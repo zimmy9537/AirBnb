@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "420136098766",
+    "firebase_url": "https://airbnb-2635d-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "airbnb-2635d",
+    "storage_bucket": "airbnb-2635d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420136098766:android:ee7f256a0c56043681a99f",
+        "android_client_info": {
+          "package_name": "com.zimmy.best.airbnb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "420136098766-12kfaqg7cc8abin4ph1o8scco360uffh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zimmy.best.airbnb",
+            "certificate_hash": "2d3f5a688c6832a6a21354af25a3c622b485aa45"
+          }
+        },
+        {
+          "client_id": "420136098766-sa6jknqv7js9iqe5c3hvbmc6mibj3a2l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJsOuevGRR9nuvQsKK1sOsDw-MXdZcC78"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "420136098766-sa6jknqv7js9iqe5c3hvbmc6mibj3a2l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
