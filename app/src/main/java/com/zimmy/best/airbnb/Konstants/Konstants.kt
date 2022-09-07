@@ -8,7 +8,7 @@ class Konstants {
         const val USERS="Users"
         const val DATA="Data"
         const val GENERAL="General"
-        const val USERCOUNT="UserCount"
+        const val USERCOUNT="userCount"
 
 
         //shared preference

@@ -107,6 +107,7 @@ class SignInActivity : AppCompatActivity() {
                 startActivity(intent)
 
                 var user: User
+                firebaseDatabase=FirebaseDatabase.getInstance()
                 accountReference = firebaseDatabase.reference.child(Konstants.USERS)
 
                 accountReference.child(email).child(Konstants.DATA)
@@ -193,7 +194,6 @@ class SignInActivity : AppCompatActivity() {
     private fun databaseOperation(account: GoogleSignInAccount) {
         mAuth = FirebaseAuth.getInstance()
         firebaseDatabase = FirebaseDatabase.getInstance()
-        accountReference = firebaseDatabase.reference.child(Konstants.USERS)
         var firstTime: Boolean
 
         firebaseDatabase.reference.child(Konstants.UIDS).child(mAuth.uid.toString())
@@ -206,6 +206,7 @@ class SignInActivity : AppCompatActivity() {
                         firebaseDatabase.reference.child(Konstants.UIDS)
                             .child(mAuth.uid.toString()).setValue(account.email)
 
+                        accountReference = firebaseDatabase.reference.child(Konstants.USERS).child(mAuth.uid.toString())
                         databaseInsertOperation(account)
                         Toast.makeText(
                             baseContext,
@@ -217,7 +218,8 @@ class SignInActivity : AppCompatActivity() {
                         var user: User
                         val email: String = snapshot.getValue(String::class.java)!!
 
-                        accountReference.child(email).child(Konstants.DATA)
+                        accountReference = firebaseDatabase.reference.child(Konstants.USERS)
+                        accountReference.child(mAuth.uid.toString()).child(Konstants.DATA)
                             .addListenerForSingleValueEvent(object :
                                 ValueEventListener {
                                 override fun onDataChange(snapshot: DataSnapshot) {
