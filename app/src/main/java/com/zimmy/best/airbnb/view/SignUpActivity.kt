@@ -16,7 +16,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.*
-import com.zimmy.best.airbnb.Konstants.Konstants
+import com.zimmy.best.airbnb.konstants.Konstants
 import com.zimmy.best.airbnb.databinding.ActivitySignUpBinding
 import com.zimmy.best.airbnb.models.User
 
@@ -130,7 +130,9 @@ class SignUpActivity : AppCompatActivity() {
                             accountReference.child(mAuth.uid.toString())
                                 .child(Konstants.DATA)
                                 .setValue(user)
+
                         }
+
 
                         override fun onCancelled(error: DatabaseError) {
                             Log.v(TAG, "Database error ${error.message}")
@@ -276,7 +278,7 @@ class SignUpActivity : AppCompatActivity() {
                     editor.putString(Konstants.NAME, user.name)
                     editor.putString(Konstants.EMAIL, user.email)
                     editor.apply()
-                    accountReference.child(binding.email.text.toString()).child(Konstants.DATA)
+                    accountReference.child(Konstants.DATA)
                         .setValue(user)
                     Log.v("data added", "data added")
                 }

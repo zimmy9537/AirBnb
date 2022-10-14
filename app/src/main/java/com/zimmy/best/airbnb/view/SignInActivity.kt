@@ -16,7 +16,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.*
-import com.zimmy.best.airbnb.Konstants.Konstants
+import com.zimmy.best.airbnb.konstants.Konstants
 import com.zimmy.best.airbnb.databinding.ActivitySignInBinding
 import com.zimmy.best.airbnb.models.User
 
@@ -107,10 +107,10 @@ class SignInActivity : AppCompatActivity() {
                 startActivity(intent)
 
                 var user: User
-                firebaseDatabase=FirebaseDatabase.getInstance()
+                firebaseDatabase = FirebaseDatabase.getInstance()
                 accountReference = firebaseDatabase.reference.child(Konstants.USERS)
 
-                accountReference.child(email).child(Konstants.DATA)
+                accountReference.child(mAuth.uid.toString()).child(Konstants.DATA)
                     .addListenerForSingleValueEvent(object :
                         ValueEventListener {
                         override fun onDataChange(snapshot: DataSnapshot) {
@@ -206,7 +206,8 @@ class SignInActivity : AppCompatActivity() {
                         firebaseDatabase.reference.child(Konstants.UIDS)
                             .child(mAuth.uid.toString()).setValue(account.email)
 
-                        accountReference = firebaseDatabase.reference.child(Konstants.USERS).child(mAuth.uid.toString())
+                        accountReference = firebaseDatabase.reference.child(Konstants.USERS)
+                            .child(mAuth.uid.toString())
                         databaseInsertOperation(account)
                         Toast.makeText(
                             baseContext,
@@ -270,7 +271,8 @@ class SignInActivity : AppCompatActivity() {
                     editor.putString(Konstants.NAME, user.name)
                     editor.putString(Konstants.EMAIL, user.email)
                     editor.apply()
-                    accountReference.child(binding.email.text.toString()).child(Konstants.DATA)
+                    Log.v("called here ", "called here")
+                    accountReference.child(Konstants.DATA)
                         .setValue(user)
                 }
 

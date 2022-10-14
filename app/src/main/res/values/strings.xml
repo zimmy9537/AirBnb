@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">AirBnb</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="explore">Explore</string>
+    <string name="wishlists">Wishlists</string>
+    <string name="inbox">Inbox</string>
+    <string name="profile">Profile</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="back"><![CDATA[<-]]></string>
+    <string name="forward"><![CDATA[->]]></string>
 </resources>
