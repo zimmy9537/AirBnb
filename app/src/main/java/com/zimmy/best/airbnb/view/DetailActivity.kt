@@ -27,6 +27,8 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var exploreReference: DatabaseReference
     private lateinit var basicDetails: BasicDetails
     private lateinit var hostingDetails: HostingDetails
+    private lateinit var firstDate: DateBnb
+    private lateinit var secondDate: DateBnb
     private var LOG_TAG = DetailActivity::class.java.simpleName
     private var isDateSelected = false
     private var contract = registerForActivityResult(DateContracts()) {
@@ -83,7 +85,11 @@ class DetailActivity : AppCompatActivity() {
                     val photoList = hostingDetails.photoList
                     if (photoList != null) {
                         binding.photoRv.adapter = PhotoAdapter(photoList, this@DetailActivity)
-                        binding.photoRv.layoutManager = LinearLayoutManager(this@DetailActivity)
+                        binding.photoRv.layoutManager = LinearLayoutManager(
+                            this@DetailActivity,
+                            LinearLayoutManager.HORIZONTAL,
+                            false
+                        )
                     }
                 }
 
@@ -100,7 +106,11 @@ class DetailActivity : AppCompatActivity() {
         }
         binding.reserve.setOnClickListener {
             if (isDateSelected) {
-                startActivity(Intent(this, BookingActivity::class.java))
+                val intent = Intent(this@DetailActivity, BookingActivity::class.java)
+                intent.putExtra(Konstants.BASICDETAILS, basicDetails)
+                intent.putExtra(Konstants.FIRSTDATE,firstDate)
+                intent.putExtra(Konstants.SECONDDATE,secondDate)
+                startActivity(intent)
             } else {
                 Toast.makeText(this, "check for the availability first", Toast.LENGTH_SHORT).show()
             }
@@ -113,8 +123,8 @@ class DetailActivity : AppCompatActivity() {
                 LOG_TAG,
                 "${DateBnb.setDate(datePair.first)} || ${DateBnb.setDate(datePair.second)}"
             )
-            val firstDate = DateBnb.setDate(datePair.first)
-            val secondDate = DateBnb.setDate(datePair.second)
+            firstDate = DateBnb.setDate(datePair.first)
+            secondDate = DateBnb.setDate(datePair.second)
             binding.selectDateTv.text =
                 "${firstDate.day}/${firstDate.month} - ${secondDate.day}/${secondDate.month}"
             binding.reserve.setBackgroundResource(R.color.bnb)

@@ -20,5 +20,9 @@ class Konstants {
         const val PERSONAL = "Personal"
         const val NAME = "Name"
         const val EMAIL = "Email"
+
+        //others
+        const val FIRSTDATE="FirstDate"
+        const val SECONDDATE="SecondDate"
     }
 }

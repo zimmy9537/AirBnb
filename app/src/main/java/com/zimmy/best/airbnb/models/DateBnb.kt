@@ -3,7 +3,7 @@ package com.zimmy.best.airbnb.models
 import java.text.SimpleDateFormat
 import java.util.*
 
-data class DateBnb(var day: Int, var month: Int, var year: Int) {
+data class DateBnb(var day: Int, var month: Int, var year: Int):java.io.Serializable {
     constructor() : this(0, 0, 0)
 
     companion object {
