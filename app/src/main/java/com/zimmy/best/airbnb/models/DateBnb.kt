@@ -7,7 +7,7 @@ data class DateBnb(var day: Int, var month: Int, var year: Int):java.io.Serializ
     constructor() : this(0, 0, 0)
 
     companion object {
-        public fun setDate(longDate: Long): DateBnb {
+        fun setDate(longDate: Long): DateBnb {
             val df = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             val formattedDate: String = df.format(longDate)
             val dayDate = formattedDate.slice(IntRange(0, 1)).toInt()
@@ -20,5 +20,4 @@ data class DateBnb(var day: Int, var month: Int, var year: Int):java.io.Serializ
             return DateBnb(dayDate, month, year)
         }
     }
-
 }

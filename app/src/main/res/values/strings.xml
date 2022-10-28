@@ -8,5 +8,6 @@
     <string name="title_activity_maps">MapsActivity</string>
     <string name="back"><![CDATA[<-]]></string>
     <string name="forward"><![CDATA[->]]></string>
+    <string name="edit"><u>Edit</u></string>
     <string name="booking_agreement">By selecting the button below, I agree to the Host\'s House Rules, Airbnb\'s Rebooking and Refund Policy and that Airbnb can charge mv pavment method it I\'m responsible for damage. I agree to pay the total amount shown if the host accepts my request?</string>
 </resources>
