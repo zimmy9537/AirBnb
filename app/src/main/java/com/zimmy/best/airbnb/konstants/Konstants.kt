@@ -15,9 +15,18 @@ class Konstants {
         const val BASICDETAILS = "BasicDetails"
         const val HOSTINGCODE = "hostingCode"
         const val HOSTINGDETAILS = "hostingDetails"
-        const val FUTURE_GUESTS="FutureGuests"
-        const val HOSTS="Hosts"
-        const val BOOKINGREQUEST="BookingRequest"
+        const val FUTURE_GUESTS = "FutureGuests"
+        const val HOSTS = "Hosts"
+        const val BOOKINGREQUEST = "BookingRequest"
+        const val PAYMENTLEFT = "PaymentLeft"
+        const val BASIC_PHOTO = "basicPhoto"
+        const val HOSTINGS_MODEL1 = "HostingsModel1"
+        const val PRICE = "price"
+        const val TOTALGBP = "totalGbp"
+        const val BILL = "Bill"
+        const val BOOKINGS = "Bookings"
+        const val HOSTUID = "hostUid"
+        const val CONFIRMBOOKING = "ConfirmBooking"
 
 
         //shared preference
@@ -26,9 +35,9 @@ class Konstants {
         const val EMAIL = "Email"
 
         //others
-        const val FIRSTDATE="FirstDate"
-        const val SECONDDATE="SecondDate"
-        const val BOOKINGCODE=5
+        const val FIRSTDATE = "FirstDate"
+        const val SECONDDATE = "SecondDate"
+        const val BOOKINGCODE = 5
 
         fun codeGenerator(totalCharacters: Int): String {
             val alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"

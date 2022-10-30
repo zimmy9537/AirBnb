@@ -1,6 +1,10 @@
 package com.zimmy.best.airbnb.models
 
-data class Guest(var adult: Int, var children: Int, var infant: Int, var pet: Int) {
+import java.io.Serializable
+
+data class Guest(var adult: Int, var children: Int, var infant: Int, var pet: Int): Serializable {
+
+    constructor():this(0,0,0,0)
 
     fun incrementAdult() {
         adult++
