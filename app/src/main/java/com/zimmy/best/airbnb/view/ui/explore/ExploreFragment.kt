@@ -63,7 +63,6 @@ class ExploreFragment : Fragment(), OnRefreshListener {
             for (basicDetail in it) {
                 Log.d(LOG_TAG, "basicDetails ${basicDetail.title}, ${basicDetail.address}")
             }
-
             binding.listRv.adapter = context?.let { it1 -> ExploreAdapter(it, it1) }
         })
         //observe progress

@@ -7,21 +7,21 @@ import android.util.Log
 import androidx.activity.result.contract.ActivityResultContract
 import com.zimmy.best.airbnb.konstants.Konstants
 
+class ChatContract : ActivityResultContract<Intent, Boolean>() {
 
-class DateContracts : ActivityResultContract<Intent, Pair<Long, Long>?>() {
     override fun createIntent(context: Context, input: Intent): Intent {
         return input
     }
 
-    override fun parseResult(resultCode: Int, intent: Intent?): Pair<Long, Long>? {
+    override fun parseResult(resultCode: Int, intent: Intent?): Boolean {
         if (resultCode == Activity.RESULT_OK) {
-            Log.d(DateContracts::class.java.simpleName, "result ok")
+            Log.d(ChatContract::class.java.simpleName, "result ok")
             if (intent != null) {
-                return intent.getSerializableExtra(Konstants.DATA) as Pair<Long, Long>
+                return intent.getSerializableExtra(Konstants.DATA) as Boolean
             }
         } else if (resultCode == Activity.RESULT_CANCELED) {
-            Log.d(DateContracts::class.java.simpleName, "result cancelled")
+            Log.d(ChatContract::class.java.simpleName, "result cancelled")
         }
-        return null
+        return false
     }
 }

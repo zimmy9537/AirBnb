@@ -5,6 +5,9 @@ import java.util.*
 class Konstants {
     companion object {
 
+        //Room
+        const val CHATS = "Chats"
+
         //firebase
         const val UIDS = "Uids"
         const val USERS = "Users"
@@ -27,11 +30,12 @@ class Konstants {
         const val BOOKINGS = "Bookings"
         const val HOSTUID = "hostUid"
         const val CONFIRMBOOKING = "ConfirmBooking"
+        const val MESSAGE = "Message"
 
 
         //shared preference
         const val PERSONAL = "Personal"
-        const val NAME = "Name"
+        const val NAME = "name"
         const val EMAIL = "Email"
 
         //others

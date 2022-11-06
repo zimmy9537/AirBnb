@@ -8,11 +8,13 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
+import com.zimmy.best.airbnb.contracts.ChatContract
 import com.zimmy.best.airbnb.contracts.DateContracts
 import com.zimmy.best.airbnb.databinding.ActivityBookingBinding
 import com.zimmy.best.airbnb.databinding.GuestDialogBinding
@@ -49,6 +51,18 @@ class BookingActivity : AppCompatActivity() {
     private var contract = registerForActivityResult(DateContracts()) {
         val datePair = it
         performDateCalculations(datePair)
+    }
+    private var chatContract = registerForActivityResult(ChatContract()) {
+        if (it) {
+            binding.messageCb.isChecked = true
+            binding.addMessage.visibility = View.GONE
+        } else {
+            Toast.makeText(
+                this,
+                "please send a appropriate message to host regarding the booking",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
     private val df: DecimalFormat = DecimalFormat("0.00")
 
@@ -93,13 +107,9 @@ class BookingActivity : AppCompatActivity() {
         priceCalculations()
 
         binding.addMessage.setOnClickListener {
-            Toast.makeText(
-                this@BookingActivity,
-                "Diversion ahead, Work in progress",
-                Toast.LENGTH_SHORT
-            ).show()
-            addMessage = true
-            binding.messageCb.isChecked = true
+            val intent = Intent(this, MessageHostActivity::class.java)
+            intent.putExtra(Konstants.UIDS, basicDetails.hostUid)
+            chatContract.launch(intent)
         }
         binding.addPhone.setOnClickListener {
             Toast.makeText(
