@@ -23,7 +23,6 @@ class ExploreFragment : Fragment(), OnRefreshListener {
     private var _binding: FragmentExploreBinding? = null
     private var LOG_TAG = ExploreFragment::class.java.simpleName
     private lateinit var exploreModel: ExploreViewModel
-    private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var repository: ExploreRepository
 
     private lateinit var wishModel: WishListsViewModel
@@ -39,7 +38,6 @@ class ExploreFragment : Fragment(), OnRefreshListener {
             this,
             ExploreViewModelFactory(repository)
         )[ExploreViewModel::class.java]
-        linearLayoutManager = LinearLayoutManager(context)
 
         //fetch wish list
         wishRepository = WishListRepository()
@@ -57,14 +55,13 @@ class ExploreFragment : Fragment(), OnRefreshListener {
     ): View {
         _binding = FragmentExploreBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        binding.listRv.layoutManager = linearLayoutManager
+        binding.listRv.layoutManager = LinearLayoutManager(context)
         binding.swipeRefreshL.setOnRefreshListener(this)
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d(LOG_TAG, "onViewCreated")
         getData()
     }
 
@@ -80,9 +77,6 @@ class ExploreFragment : Fragment(), OnRefreshListener {
         exploreModel.explore()
         //observe data changes
         exploreModel.listLiveData.observe(viewLifecycleOwner, Observer {
-            for (basicDetail in it) {
-                Log.d(LOG_TAG, "basicDetails ${basicDetail.title}, ${basicDetail.address}")
-            }
             binding.listRv.adapter = context?.let { it1 -> ExploreAdapter(it, it1) }
         })
         //observe progress
