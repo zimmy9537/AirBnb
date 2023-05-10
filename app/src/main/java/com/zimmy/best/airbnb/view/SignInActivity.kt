@@ -138,8 +138,11 @@ class SignInActivity : AppCompatActivity() {
 
                 finish()
             } else {
-                Toast.makeText(this@SignInActivity, "Error while Login", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(
+                    this@SignInActivity,
+                    "Something went wrong",
+                    Toast.LENGTH_LONG
+                ).show()
                 return@addOnCompleteListener
             }
         }
@@ -164,10 +167,10 @@ class SignInActivity : AppCompatActivity() {
                 // Google Sign In failed, update UI appropriately
                 Toast.makeText(
                     this@SignInActivity,
-                    "some fucking error, ${e.message}",
+                    "Something went wrong",
                     Toast.LENGTH_LONG
                 ).show()
-                Log.v(TAG, "error stack ${e.stackTrace}")
+                Log.v(TAG, "Something went wrong ${e.message} ${e.stackTrace}")
             }
         }
     }
@@ -185,8 +188,12 @@ class SignInActivity : AppCompatActivity() {
                     databaseOperation(account)
                 }
             } else {
-                Toast.makeText(baseContext, "Error!" + task.exception!!.message, Toast.LENGTH_LONG)
-                    .show()
+                Toast.makeText(
+                    this@SignInActivity,
+                    "Something went wrong",
+                    Toast.LENGTH_LONG
+                ).show()
+                task.exception!!.message?.let { Log.v(TAG, it) }
             }
         }
     }
@@ -271,7 +278,6 @@ class SignInActivity : AppCompatActivity() {
                     editor.putString(Konstants.NAME, user.name)
                     editor.putString(Konstants.EMAIL, user.email)
                     editor.apply()
-                    Log.v("called here ", "called here")
                     accountReference.child(Konstants.DATA)
                         .setValue(user)
                 }

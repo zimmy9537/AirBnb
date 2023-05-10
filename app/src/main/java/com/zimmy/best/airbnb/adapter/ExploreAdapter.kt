@@ -44,6 +44,10 @@ class ExploreAdapter(
                     intent.putExtra(Konstants.HOSTINGCODE, this.hostingCode)
                     context.startActivity(intent)
                 }
+
+                binding.wishIv.setOnClickListener{
+
+                }
             }
         }
     }

@@ -126,7 +126,6 @@ class SignUpActivity : AppCompatActivity() {
                             editor.putString(Konstants.NAME, user.name)
                             editor.putString(Konstants.EMAIL, user.email)
                             editor.apply()
-                            Log.v("member added ","member with ${mAuth.uid.toString()}")
                             accountReference.child(mAuth.uid.toString())
                                 .child(Konstants.DATA)
                                 .setValue(user)
@@ -147,7 +146,12 @@ class SignUpActivity : AppCompatActivity() {
 
 
             } else {
-                Log.v(TAG, "result ${it.exception.toString()}")
+                Toast.makeText(
+                    this@SignUpActivity,
+                    "Something went wrong",
+                    Toast.LENGTH_LONG
+                ).show()
+                Log.v(TAG, "failure ${it.exception.toString()}")
             }
         }
     }
@@ -172,10 +176,10 @@ class SignUpActivity : AppCompatActivity() {
                 // Google Sign In failed, update UI appropriately
                 Toast.makeText(
                     this@SignUpActivity,
-                    "some fucking error, ${e.message}",
+                    "something went wrong",
                     Toast.LENGTH_LONG
                 ).show()
-                Log.v(TAG, "error stack ${e.stackTrace}")
+                Log.v(TAG, "something went wrong error code ${e.message} ${e.stackTrace}")
             }
         }
     }
@@ -193,8 +197,12 @@ class SignUpActivity : AppCompatActivity() {
                     databaseOperation(account)
                 }
             } else {
-                Toast.makeText(baseContext, "Error!" + task.exception!!.message, Toast.LENGTH_LONG)
-                    .show()
+                Toast.makeText(
+                    this@SignUpActivity,
+                    "Something went wrong",
+                    Toast.LENGTH_LONG
+                ).show()
+                task.exception!!.message?.let { Log.d(TAG, it) }
             }
         }
     }
@@ -214,7 +222,8 @@ class SignUpActivity : AppCompatActivity() {
                         firebaseDatabase.reference.child(Konstants.UIDS)
                             .child(mAuth.uid.toString()).setValue(account.email)
 
-                        accountReference = firebaseDatabase.reference.child(Konstants.USERS).child(mAuth.uid.toString())
+                        accountReference = firebaseDatabase.reference.child(Konstants.USERS)
+                            .child(mAuth.uid.toString())
                         databaseInsertOperation(account)
                         Toast.makeText(
                             baseContext,
@@ -232,10 +241,6 @@ class SignUpActivity : AppCompatActivity() {
                                 ValueEventListener {
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     user = snapshot.getValue(User::class.java)!!
-                                    Log.v(
-                                        TAG,
-                                        "here user " + user.name + ", " + user.email
-                                    )
                                     editor.putString(Konstants.NAME, user.name)
                                     editor.putString(Konstants.EMAIL, user.email)
                                     editor.apply()
@@ -247,7 +252,7 @@ class SignUpActivity : AppCompatActivity() {
                                 }
 
                                 override fun onCancelled(error: DatabaseError) {
-                                    Log.v(TAG, "database here " + error.message)
+                                    Log.v(TAG, "Database error " + error.message)
                                 }
 
                             })
@@ -280,7 +285,6 @@ class SignUpActivity : AppCompatActivity() {
                     editor.apply()
                     accountReference.child(Konstants.DATA)
                         .setValue(user)
-                    Log.v("data added", "data added")
                 }
 
                 override fun onCancelled(error: DatabaseError) {

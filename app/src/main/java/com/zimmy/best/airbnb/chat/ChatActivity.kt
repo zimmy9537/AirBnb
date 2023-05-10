@@ -74,7 +74,7 @@ class ChatActivity : AppCompatActivity() {
         binding.sendButton.setOnClickListener {
             val messageString = binding.messageEditText.text.toString()
             if (messageString.isEmpty()) {
-                Toast.makeText(this, "message canot be empty", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "message cannot be empty", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             binding.messageEditText.text.clear()

@@ -1,13 +1,22 @@
 package com.zimmy.best.airbnb.view.ui.wishlists
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.zimmy.best.airbnb.models.BasicDetails
 
-class WishListsViewModel : ViewModel() {
+class WishListsViewModel(private val repository: WishListRepository) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+
+    val listLiveData: LiveData<ArrayList<BasicDetails>>
+        get() = repository.listedList
+
+    val loaded: LiveData<Boolean>
+        get() = repository.ifLoaded
+
+    val wishStringLiveData: LiveData<ArrayList<String>>
+        get() = repository.wishStringList
+
+    fun getWishList() {
+        repository.getWishList()
     }
-    val text: LiveData<String> = _text
 }

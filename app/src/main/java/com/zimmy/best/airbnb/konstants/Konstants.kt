@@ -31,7 +31,7 @@ class Konstants {
         const val HOSTUID = "hostUid"
         const val CONFIRMBOOKING = "ConfirmBooking"
         const val MESSAGE = "Message"
-
+        const val WISHLIST="WishList"
 
         //shared preference
         const val PERSONAL = "Personal"

@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.zimmy.best.airbnb.adapter.ExploreAdapter
 import com.zimmy.best.airbnb.databinding.FragmentExploreBinding
+import com.zimmy.best.airbnb.view.ui.wishlists.WishListRepository
+import com.zimmy.best.airbnb.view.ui.wishlists.WishListViewModelFactory
+import com.zimmy.best.airbnb.view.ui.wishlists.WishListsViewModel
 
 class ExploreFragment : Fragment(), OnRefreshListener {
 
@@ -22,6 +25,10 @@ class ExploreFragment : Fragment(), OnRefreshListener {
     private lateinit var exploreModel: ExploreViewModel
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var repository: ExploreRepository
+
+    private lateinit var wishModel: WishListsViewModel
+    private lateinit var wishRepository: WishListRepository
+    private lateinit var wishStringList: ArrayList<String>
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -35,6 +42,14 @@ class ExploreFragment : Fragment(), OnRefreshListener {
             ExploreViewModelFactory(repository)
         )[ExploreViewModel::class.java]
         linearLayoutManager = LinearLayoutManager(context)
+
+        //fetch wish list
+        wishRepository = WishListRepository()
+        wishModel = ViewModelProvider(
+            this,
+            WishListViewModelFactory(wishRepository)
+        )[WishListsViewModel::class.java]
+        wishStringList = ArrayList()
     }
 
     override fun onCreateView(
@@ -56,6 +71,13 @@ class ExploreFragment : Fragment(), OnRefreshListener {
     }
 
     private fun getData() {
+
+        //fetch wish list
+        wishModel.getWishList()
+        wishModel.wishStringLiveData.observe(viewLifecycleOwner, Observer {
+            wishStringList = it
+        })
+
         Log.d(LOG_TAG, "get data")
         exploreModel.explore()
         //observe data changes
