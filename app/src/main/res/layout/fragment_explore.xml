@@ -39,6 +39,7 @@
                     android:id="@+id/whereTo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxLines="1"
                     android:background="@color/white"
                     android:hint="Where to?"
                     android:textColorHint="@color/black" />

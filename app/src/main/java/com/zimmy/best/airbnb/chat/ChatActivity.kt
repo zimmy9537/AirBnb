@@ -55,9 +55,6 @@ class ChatActivity : AppCompatActivity() {
                             Log.d(LOG_TAG, "message null")
                         }
                     }
-                    for(message in messageList){
-                        Log.d(LOG_TAG,"message:- ${message.message}")
-                    }
                     binding.progress.visibility = View.GONE
                     (binding.chatRv.adapter as MessageAdapter).notifyDataSetChanged()
                 }
@@ -80,10 +77,10 @@ class ChatActivity : AppCompatActivity() {
             binding.messageEditText.text.clear()
             val message = Message(messageString, userUid, Date().time)
             val room = chatDetail.hostUid + userUid
-            val chataReference =
+            val chatReference =
                 FirebaseDatabase.getInstance().reference.child(Konstants.CHATS).child(room)
                     .child(Konstants.MESSAGE)
-            chataReference.push().setValue(message)
+            chatReference.push().setValue(message)
         }
     }
 }

@@ -73,7 +73,6 @@ class ExploreFragment : Fragment(), OnRefreshListener {
             wishStringList = it
         })
 
-        Log.d(LOG_TAG, "get data")
         exploreModel.explore()
         //observe data changes
         exploreModel.listLiveData.observe(viewLifecycleOwner, Observer {
