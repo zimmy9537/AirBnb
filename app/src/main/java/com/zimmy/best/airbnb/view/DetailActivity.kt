@@ -108,8 +108,8 @@ class DetailActivity : AppCompatActivity() {
             if (isDateSelected) {
                 val intent = Intent(this@DetailActivity, BookingActivity::class.java)
                 intent.putExtra(Konstants.BASICDETAILS, basicDetails)
-                intent.putExtra(Konstants.FIRSTDATE,firstDate)
-                intent.putExtra(Konstants.SECONDDATE,secondDate)
+                intent.putExtra(Konstants.FIRSTDATE, firstDate)
+                intent.putExtra(Konstants.SECONDDATE, secondDate)
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "check for the availability first", Toast.LENGTH_SHORT).show()
@@ -127,7 +127,7 @@ class DetailActivity : AppCompatActivity() {
             secondDate = DateBnb.setDate(datePair.second)
             binding.selectDateTv.text =
                 "${firstDate.day}/${firstDate.month} - ${secondDate.day}/${secondDate.month}"
-            binding.reserve.setBackgroundResource(R.color.bnb)
+            binding.reserve.setCardBackgroundColor(resources.getColor(R.color.bnb))
             isDateSelected = true
         }
     }

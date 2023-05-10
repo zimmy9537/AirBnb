@@ -36,6 +36,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_toEndOf="@id/back"
                 android:orientation="horizontal">
 
@@ -44,6 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    android:maxLines="1"
                     android:paddingTop="10dp"
                     android:text="zimmy Changela"
                     android:textColor="@color/white"
@@ -85,7 +87,7 @@
             android:layout_marginEnd="15dp"
             android:layout_weight="1"
             android:background="@drawable/log_in_edit_text"
-            android:backgroundTint="#1F232F"
+            android:backgroundTint="@color/bnb"
             android:orientation="horizontal">
 
             <EditText

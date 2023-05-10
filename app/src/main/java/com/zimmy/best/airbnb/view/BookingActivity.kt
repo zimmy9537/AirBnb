@@ -114,7 +114,7 @@ class BookingActivity : AppCompatActivity() {
         binding.addPhone.setOnClickListener {
             Toast.makeText(
                 this@BookingActivity,
-                "Diversion ahead, Work in progress",
+                "Phone number added",
                 Toast.LENGTH_SHORT
             ).show()
             addPhone = true

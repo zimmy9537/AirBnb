@@ -30,8 +30,6 @@ class ExploreFragment : Fragment(), OnRefreshListener {
     private lateinit var wishRepository: WishListRepository
     private lateinit var wishStringList: ArrayList<String>
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {

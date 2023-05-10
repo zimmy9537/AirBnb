@@ -88,7 +88,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listRv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:paddingBottom="200dp"
+            android:clipToPadding="false"/>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
